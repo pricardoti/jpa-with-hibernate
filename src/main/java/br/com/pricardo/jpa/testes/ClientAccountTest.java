@@ -1,7 +1,7 @@
-package br.com.pricardo;
+package br.com.pricardo.jpa.testes;
 
-import br.com.pricardo.jpa.Cliente;
-import br.com.pricardo.jpa.Conta;
+import br.com.pricardo.jpa.model.Cliente;
+import br.com.pricardo.jpa.model.Conta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

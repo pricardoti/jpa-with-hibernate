@@ -1,4 +1,4 @@
-package br.com.pricardo.jpa;
+package br.com.pricardo.jpa.model;
 
 import javax.persistence.*;
 

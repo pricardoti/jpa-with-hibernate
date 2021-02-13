@@ -1,8 +1,8 @@
-package br.com.pricardo;
+package br.com.pricardo.jpa.testes;
 
-import br.com.pricardo.jpa.Conta;
-import br.com.pricardo.jpa.Movimentacao;
-import br.com.pricardo.jpa.TipoMovimentacao;
+import br.com.pricardo.jpa.model.Conta;
+import br.com.pricardo.jpa.model.Movimentacao;
+import br.com.pricardo.jpa.model.TipoMovimentacao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

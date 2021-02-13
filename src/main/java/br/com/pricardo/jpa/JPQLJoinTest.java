@@ -1,7 +1,7 @@
-package br.com.pricardo;
+package br.com.pricardo.jpa;
 
-import br.com.pricardo.jpa.Categoria;
-import br.com.pricardo.jpa.Movimentacao;
+import br.com.pricardo.jpa.model.Categoria;
+import br.com.pricardo.jpa.model.Movimentacao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,16 +10,15 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class JPQLJoinTest {
+
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
         EntityManager em = emf.createEntityManager();
 
-        String sql =
-                "select m " +
-                        " from Movimentacao m " +
-                        " join m.categorias c " +
-                        " where c = :pCategoria";
+        String sql = "select m from Movimentacao m " +
+                " join m.categorias c " +
+                " where c = :pCategoria";
 
         Categoria categoria = new Categoria();
         categoria.setId(2L);

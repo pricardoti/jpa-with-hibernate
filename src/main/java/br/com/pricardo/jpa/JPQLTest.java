@@ -1,7 +1,7 @@
-package br.com.pricardo;
+package br.com.pricardo.jpa;
 
-import br.com.pricardo.jpa.Conta;
-import br.com.pricardo.jpa.Movimentacao;
+import br.com.pricardo.jpa.model.Conta;
+import br.com.pricardo.jpa.model.Movimentacao;
 
 import javax.persistence.*;
 import java.util.List;
