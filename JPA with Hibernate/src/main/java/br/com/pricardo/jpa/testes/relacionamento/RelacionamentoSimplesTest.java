@@ -1,4 +1,4 @@
-package br.com.pricardo.jpa.testes;
+package br.com.pricardo.jpa.testes.relacionamento;
 
 import br.com.pricardo.jpa.model.Conta;
 import br.com.pricardo.jpa.model.Movimentacao;
@@ -10,11 +10,11 @@ import javax.persistence.Persistence;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RelationshipTest {
+public class RelacionamentoSimplesTest {
     public static void main(String[] args) {
         Conta conta = new Conta();
-        conta.setAgencia(123123l);
-        conta.setNumero(456456l);
+        conta.setAgencia(1);
+        conta.setNumero(123);
         conta.setSaldo(300.0);
         conta.setTitular("Zezinho");
 

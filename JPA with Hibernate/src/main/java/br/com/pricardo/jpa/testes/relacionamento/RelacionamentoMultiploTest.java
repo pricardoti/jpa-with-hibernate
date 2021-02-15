@@ -1,4 +1,4 @@
-package br.com.pricardo.jpa.testes;
+package br.com.pricardo.jpa.testes.relacionamento;
 
 import br.com.pricardo.jpa.model.Categoria;
 import br.com.pricardo.jpa.model.Movimentacao;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class RelationshipMultipleTest {
+public class RelacionamentoMultiploTest {
 
     public static void main(String[] args) {
         Categoria categoria = new Categoria("Viagem");

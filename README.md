@@ -13,9 +13,8 @@ Objetivo do projeto é praticar e aprimorar os conhecimentos referentes a utiliz
 - Relacionamentos entre entidades precisam ser configurados pelas anotações no atributo que define o relacionamento na classe.
 - A JPA carrega automaticamente o relacionamento ao carregar a entidade
 
-___
 
-#### Objetivos
+##### Objetivos
 
 - Entenda as dificuldades do uso do JDBC puro
 - Abuse (usar de forma adequada) da persistência orientada a objetos
@@ -23,7 +22,6 @@ ___
 - Fique fera em Lazy Loading e relacionamentos bidirecionais
 - Organize suas queries como um profissional
 
-___
 
 ##### O que é Dialeto ?
 O dialeto também serve como forma de escolhermos recursos do banco que serão usados. Por exemplo, no MySQL, podemos utilizar o **MyISAM (storage strategy)**, que não possui transações e integridade referencial (foreign key constraint).
@@ -57,7 +55,11 @@ Uma transação é um conjunto de operações que executam de forma atômica. Um
 Temos as anotações ``@OneToOne`` e ``@ManyToOne``, dependendo da cardinalidade.
 O ``@OneToOne`` por padrão, não coloca essa restrição construente nas tabelas. Neste mesmo caso, é necessário aplicarmos o comportamento através da anotação ``@JoinColumn()`` passando o atributo **unique** como ``true``, o que tornará única a chave estrangeira, impedindo outros relacionamento indevidos.
 
-##### Java Persistence Query Language ou JPQL 
+### Java Persistence Query Language ou JPQL 
+
+JPQL é uma linguagem de consulta poderosa que permite definir consultas de banco de dados com base em seu modelo de entidade. Sua estrutura e sintaxe são muito semelhantes às do SQL.
+A principal diferença entre SQL e JPQL é que o SQL funciona com tabelas, registros e campos de bancos de dados relacionais, enquanto o JPQL funciona com classes e objetos Java.
+___
 
 - JPQL é orientado a objetos, enquanto SQL não;
 - JPQL é feita para abstrair o mundo relacional, permitindo com que os desenvolvedores se preocupem apenas com objetos;
@@ -69,4 +71,38 @@ O ``TypedQuery`` faz checagem de tipo, evitando a ocorrência de ``ClassCastExce
 
 A notação de passar o valor do parâmetro, baseado na posição onde ele se encontra, assim como no JDBC, também existe na JPA e se chama ***Positional Parameter Notation***. No entanto, a presença de muitos parâmetros pode facilmente se tornar uma confusão.
 
-Para evitar isso, usamos a notação **Named Parameter Notation** que é mais expressiva. Onde ganhamos a facilidade de identificar os parâmetros, diminuindo a probabilidade de erros
+Para evitar isso, usamos a notação ***Named Parameter Notation*** que é mais expressiva. Onde ganhamos a facilidade de identificar os parâmetros, diminuindo a probabilidade de erros.
+
+### JPA: JPQL e Criteria
+___
+
+- Relacionamento ``@*ToMany`` são Lazy por padrão;
+- *Lazy* significa que só serão carregados sob demanda;
+- Podemos reconfigurar esse comportamento pele atributo ``fetch`` da anotação usando a enum ``FetchType.EAGER``;
+- as queries podemos inicializar um relacionamento *lazy* usando ``join fetch``;
+
+___
+
+TODO: Descrever relacionamentos bidirecionais <br>
+TODO: Descrever mappedBy <br>
+TODO: Descrever fetch
+
+___
+
+Para os exercicios/testes desta fase é necessário a execução via docker, seguem os comandos abaixo::
+
+- Para rodar os services abaixo: ``docker-compose up -d``
+- Para terminar os services abaixo: ``docker-compose down``
+
+___
+
+## Spring Data
+
+O **Spring Data** é um projeto do Spring com o objetivo de simplificar ainda mais o acesso ao banco de dados. Como ele definimos apenas interfaces e o Spring Data gera as implementações para a maioria das operações. Em outras palavras, com Spring Data nem é mais preciso criar um DAO ou implementar pesquisas!JPQL é uma DSL, uma linguagem especifica para consultas. A Criteria por sua vez é puramente Java e por isso mais verboso. Ou seja, devemos usar a JPQL sempre?
+                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                     A resposta é: depende. Só devemos usar a API de Criteria quando a consulta é dinâmica. Ai sim ele fica mais flexível e a JPQL perde toda legibilidade e simplicidade. E sempre devemos usar a JPQL quando a pesquisa é estática, pois ela é muito mais legível e enxuta.
+                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                     Resumindo:
+                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                     as consultas JPQL são mais fáceis de escrever e ler quando a consulta é estática.
+                                                                                                                                                                                                                                                                                                                     as consultas com a API de Criteria são superiores na hora de construir consultas dinâmicas.

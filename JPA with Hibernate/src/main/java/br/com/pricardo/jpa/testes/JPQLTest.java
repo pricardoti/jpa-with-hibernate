@@ -1,4 +1,4 @@
-package br.com.pricardo.jpa;
+package br.com.pricardo.jpa.testes;
 
 import br.com.pricardo.jpa.model.Conta;
 import br.com.pricardo.jpa.model.Movimentacao;

@@ -1,5 +1,7 @@
 package br.com.pricardo.jpa.testes;
 
+
+
 import br.com.pricardo.jpa.model.Conta;
 
 import javax.persistence.EntityManager;
@@ -17,7 +19,7 @@ public class CreateUpdateEntityTest {
         System.out.println(">>> Inserindo registro(s)...");
 
         entityManager.getTransaction().begin();
-        entityManager.persist(new Conta(4321l, 1234l, 1000.0, "Seu João"));
+        entityManager.persist(new Conta(1, 123, 1000.0, "Seu João"));
         entityManager.getTransaction().commit();
 
         System.out.println(">>> Registro(s) inserido(s) com sucesso.");
@@ -40,8 +42,8 @@ public class CreateUpdateEntityTest {
             entityManager.getTransaction().begin();
             conta.setSaldo(100.0);
             entityManager.getTransaction().commit();
-        } catch (IllegalStateException isException) {
-            System.out.println(isException);
+        } catch (IllegalStateException error) {
+            System.out.println(error);
         }
 
         System.out.println(">>> Criando um novo managed...");

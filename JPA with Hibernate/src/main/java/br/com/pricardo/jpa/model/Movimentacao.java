@@ -3,8 +3,13 @@ package br.com.pricardo.jpa.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "mediaDiariaMovimentacoes",
+        query = "select new br.com.pricardo.jpa.model.MediaComData(avg(m.valor), day(m.data), month(m.data)) from Movimentacao m group by day(m.data), month(m.data), year(m.data)"
+)
 @Entity
 public class Movimentacao {
 
@@ -12,7 +17,7 @@ public class Movimentacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private TipoMovimentacao tipoMovimentacao;
     private LocalDateTime data;
     private String descricao;
@@ -21,8 +26,24 @@ public class Movimentacao {
     @ManyToOne
     private Conta conta;
 
-    @ManyToMany
-    private List<Categoria> categorias;
+    @OneToMany
+    private List<Categoria> categorias = new ArrayList<>();
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
 
     public Long getId() {
         return id;
@@ -64,11 +85,16 @@ public class Movimentacao {
         this.valor = valor;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    @Override
+    public String toString() {
+        return "Movimentacao{" +
+                "id=" + id +
+                ", tipoMovimentacao=" + tipoMovimentacao +
+                ", data=" + data +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                ", conta=" + conta +
+                ", categorias=" + categorias +
+                '}';
     }
 }
